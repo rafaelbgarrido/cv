@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Interativo - Rafael Barrios Garrido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: Uma aplicação de página única com uma barra de navegação superior fixa para fácil acesso às seções principais: Início, Sobre, Carreira, Competências, Certificações e Formação. A estrutura é projetada para uma experiência de usuário não linear e exploratória. A seção 'Carreira' utiliza uma linha do tempo vertical interativa para tornar o histórico de trabalho digerível e envolvente. A seção 'Competências' apresenta um gráfico de radar para um resumo visual rápido das competências essenciais, transformando a lista em uma visualização de dados mais impactante. Esta abordagem tipo painel é escolhida em vez de um documento linear para fornecer uma apresentação moderna, amigável ao usuário e profissional do conteúdo do CV, permitindo que recrutadores e visitantes encontrem rapidamente as informações mais relevantes. -->
+    <!-- Visualization & Content Choices: 
+        - Informação do Relatório: Histórico de Carreira -> Objetivo: Organizar/Informar -> Visualização/Apresentação: Linha do Tempo Vertical Interativa -> Interação: Clique no nome de uma empresa para expandir/recolher seus detalhes. -> Justificativa: Evita uma lista longa e monótona de texto. Torna o caminho da carreira escaneável e envolvente, permitindo que os usuários controlem as informações que veem. -> Biblioteca/Método: HTML/Tailwind/JS.
+        - Informação do Relatório: Competências Chave (Dados & IA, Cloud, Segurança, Banco de Dados) -> Objetivo: Comparar/Informar -> Visualização/Apresentação: Gráfico de Radar -> Interação: Passe o mouse para ver dicas de ferramentas com nomes de habilidades e proficiência avaliada. -> Justificativa: Fornece uma representação visual imediata e de alto impacto das áreas de especialização. É mais memorável e fácil de sintetizar do que uma simples lista com marcadores. -> Biblioteca/Método: Chart.js (Canvas).
+        - Informação do Relatório: Certificações & Formação -> Objetivo: Organizar/Informar -> Visualização/Apresentação: Layout de grade baseado em cartões. -> Interação: Efeitos de foco simples para feedback visual. -> Justificativa: Uma forma limpa, moderna e padrão de apresentar uma coleção de itens, garantindo legibilidade e um visual profissional. -> Biblioteca/Método: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh; /* Altura base responsiva */
+            width: 80vw; /* Largura base responsiva */
+            max-width: 500px; /* Largura máxima para desktop */
+            max-height: 500px; /* Altura máxima para desktop */
+        }
+        .timeline-item-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+        }
+        .timeline-item-content.expanded {
+            max-height: 500px; /* Ajuste conforme necessário para o conteúdo */
+            opacity: 1;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-gray-800">
+
+    <header id="nav-header" class="bg-stone-50/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-sky-800">
+                <a href="#inicio">RBG</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#sobre" class="text-gray-600 hover:text-sky-700 transition">Sobre</a>
+                <a href="#carreira" class="text-gray-600 hover:text-sky-700 transition">Carreira</a>
+                <a href="#competencias" class="text-gray-600 hover:text-sky-700 transition">Competências</a>
+                <a href="#certificacoes" class="text-gray-600 hover:text-sky-700 transition">Certificações</a>
+                <a href="#formacao" class="text-gray-600 hover:text-sky-700 transition">Formação</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#sobre" class="block py-2 text-gray-600 hover:text-sky-700 transition">Sobre</a>
+            <a href="#carreira" class="block py-2 text-gray-600 hover:text-sky-700 transition">Carreira</a>
+            <a href="#competencias" class="block py-2 text-gray-600 hover:text-sky-700 transition">Competências</a>
+            <a href="#certificacoes" class="block py-2 text-gray-600 hover:text-sky-700 transition">Certificações</a>
+            <a href="#formacao" class="block py-2 text-gray-600 hover:text-sky-700 transition">Formação</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <section id="inicio" class="text-center py-20">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-900">Rafael Barrios Garrido Lourenço</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600">Analista de Banco de Dados e Segurança | Fortinet & Cisco Certified | Oracle OCI & AWS Cloud | SQL Server | Python | SOC & LGPD</p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="mailto:rafaelbgarrido@gmail.com" class="bg-sky-700 text-white px-6 py-2 rounded-full hover:bg-sky-800 transition shadow-lg">Entrar em Contato</a>
+                <a href="https://www.linkedin.com/in/rafaelbg89" target="_blank" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition shadow-lg">LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="sobre" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Sobre Mim</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <p class="text-gray-700 leading-relaxed text-center">
+                    Esta seção apresenta um resumo da minha trajetória profissional, destacando minha experiência e formação. O objetivo é fornecer uma visão geral rápida das minhas qualificações e da minha abordagem técnica e estratégica.
+                </p>
+                <p class="text-gray-700 leading-relaxed text-center mt-4">
+                    Profissional de tecnologia com mais de 10 anos de experiência nas áreas de banco de dados, segurança da informação, infraestrutura e computação em nuvem. Possuo formação acadêmica em Análise e Desenvolvimento de Sistemas e Gestão Empresarial, o que me permite atuar com visão técnica e foco em resultados estratégicos para o negócio.
+                </p>
+            </div>
+        </section>
+        
+        <section id="carreira" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-12 text-sky-900">Linha do Tempo da Carreira</h2>
+            <div class="max-w-3xl mx-auto">
+                <p class="text-gray-700 leading-relaxed text-center mb-8">
+                    Explore minha experiência profissional através desta linha do tempo interativa. Clique em cada item para ver os detalhes das minhas responsabilidades e conquistas em cada função.
+                </p>
+                <div class="relative border-l-2 border-sky-200 timeline-container">
+                    
+                    <div class="mb-8 pl-8 timeline-item">
+                        <div class="absolute w-4 h-4 bg-sky-700 rounded-full -left-2 border-4 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md timeline-item-trigger cursor-pointer hover:shadow-lg transition">
+                            <h3 class="text-xl font-bold text-sky-800">Apdata</h3>
+                            <p class="text-gray-500 text-sm">Analista de Banco de Dados | Set. 2021 – Atualmente</p>
+                            <div class="timeline-item-content mt-4">
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Administração de ambientes SQL Server com foco em performance, tuning e alta disponibilidade.</li>
+                                    <li>Apoio direto a equipes de desenvolvimento e suporte, com análise de queries, integrações e correção de falhas.</li>
+                                    <li>Implantação e gerenciamento de instâncias na Oracle Cloud Infrastructure (OCI), com configuração de máquinas virtuais Windows e Linux.</li>
+                                    <li>Colaboração com times de segurança para análise de logs, mitigação de riscos e resposta a incidentes.</li>
+                                    <li>Monitoramento e automação de rotinas de backup, manutenção e integridade de dados.</li>
+                                    <li>Monitoramento de infraestrutura com Zabbix, análise de disponibilidade e geração de alertas para suporte preventivo.</li>
+                                    <li>Experiência prática com ambientes híbridos (on-premise e cloud), utilizando VMware, scripts e Linux.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8 pl-8 timeline-item">
+                        <div class="absolute w-4 h-4 bg-sky-700 rounded-full -left-2 border-4 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md timeline-item-trigger cursor-pointer hover:shadow-lg transition">
+                            <h3 class="text-xl font-bold text-sky-800">CDS Serviços e Monitoramento</h3>
+                            <p class="text-gray-500 text-sm">Analista de Infraestrutura | Nov. 2014 – Jul. 2018</p>
+                            <div class="timeline-item-content mt-4">
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Suporte técnico em redes, servidores e ambientes críticos.</li>
+                                    <li>Monitoramento de serviços, aplicações e segurança perimetral.</li>
+                                    <li>Documentação e automação de tarefas operacionais.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8 pl-8 timeline-item">
+                        <div class="absolute w-4 h-4 bg-sky-700 rounded-full -left-2 border-4 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md timeline-item-trigger cursor-pointer hover:shadow-lg transition">
+                            <h3 class="text-xl font-bold text-sky-800">Scan Informática</h3>
+                            <p class="text-gray-500 text-sm">Membro Fundador | Ago. 2012 – Nov. 2014</p>
+                            <div class="timeline-item-content mt-4">
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Participação na fundação e desenvolvimento inicial da empresa.</li>
+                                    <li>Atuação em diversas frentes para o estabelecimento das operações.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="competencias" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Minhas Competências</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Este gráfico de radar ilustra minhas principais áreas de competência, oferecendo uma visão rápida e comparativa das minhas habilidades em diferentes domínios tecnológicos.
+            </p>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </section>
+
+        <section id="certificacoes" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Certificações</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Minhas certificações demonstram meu compromisso com o aprendizado contínuo e a validação de conhecimentos em áreas críticas da tecnologia.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">LEI GERAL DE PROTEÇÃO DE DADOS (LGPD)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">AWS Cloud Practitioner Essentials (Second Edition)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Fortinet FortiGate 7.4 Operator</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Fortinet Certified Associate Cybersecurity</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Cisco CyberOps Associate</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Oracle Cloud Infrastructure Foundations (2023 & 2025)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Oracle AI Foundations (2025)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">ITIL Foundations</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="formacao" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Formação Acadêmica</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Minha formação acadêmica me proporcionou a base teórica e prática necessária para atuar com excelência nas diversas áreas da tecnologia e gestão.
+            </p>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-sky-800">Estácio</h3>
+                    <p class="text-gray-600">Análise e Desenvolvimento de Sistemas, Tecnologia da Informação</p>
+                    <p class="text-gray-500 text-sm">Março de 2021 – Setembro de 2023</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-sky-800">Faculdade de Tecnologia de São Paulo - FATEC-SP</h3>
+                    <p class="text-gray-600">Gestão Empresarial, Administração e Negócios</p>
+                    <p class="text-gray-500 text-sm">Julho de 2016 – Dezembro de 2020</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="publicacoes" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Publicações</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Minha publicação reflete meu interesse e contribuição para o debate sobre temas relevantes no campo da tecnologia e indústria.
+            </p>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <h3 class="text-xl font-bold text-sky-800">INDUSTRIA 4.0: UM ESTUDO SOBRE OS DESAFIOS DA CAPACITAÇÃO PROFISSIONAL.</h3>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-sky-900 text-white py-8 text-center">
+        <p>&copy; 2025 Rafael Barrios Garrido Lourenço. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Smooth Scrolling for Navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking a link
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Timeline Interaction
+            document.querySelectorAll('.timeline-item-trigger').forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const content = trigger.querySelector('.timeline-item-content');
+                    if (content) {
+                        content.classList.toggle('expanded');
+                    }
+                });
+            });
+
+            // Skills Radar Chart
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Dados e IA', 'Cloud & Infraestrutura', 'Segurança', 'Banco de Dados', 'Automação', 'Análise de Incidentes'],
+                    datasets: [{
+                        label: 'Nível de Proficiência',
+                        data: [90, 85, 95, 90, 80, 90], // Valores fictícios para demonstração
+                        backgroundColor: 'rgba(56, 189, 248, 0.2)', // sky-400 with opacity
+                        borderColor: 'rgba(56, 189, 248, 1)', // sky-400
+                        pointBackgroundColor: 'rgba(56, 189, 248, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(56, 189, 248, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false // Oculta a legenda padrão
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r + '%';
+                                    }
+                                    return label;
+                                },
+                                title: function(context) {
+                                    const label = context[0].label;
+                                    const words = label.split(' ');
+                                    let lines = [];
+                                    let currentLine = '';
+                                    words.forEach(word => {
+                                        if ((currentLine + word).length > 16 && currentLine.length > 0) {
+                                            lines.push(currentLine.trim());
+                                            currentLine = word + ' ';
+                                        } else {
+                                            currentLine += word + ' ';
+                                        }
+                                    });
+                                    lines.push(currentLine.trim());
+                                    return lines;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14
+                                },
+                                color: '#333'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                display: false // Oculta os valores numéricos no eixo
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
