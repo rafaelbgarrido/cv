@@ -1,0 +1,36 @@
+/* =========================================
+   CV Interativo - Rafael Barrios Garrido
+   style.css
+   ========================================= */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 40vh;
+    width: 80vw;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.timeline-item-content {
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+.timeline-item-content.expanded {
+    max-height: 3000px;  /* Aumentado para acomodar conteúdos longos */
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+        max-height: 350px;
+    }
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Interativo - Rafael Barrios Garrido</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos customizados -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50 text-gray-800">
+
+    <!-- ===== HEADER / NAVEGAÇÃO ===== -->
+    <header id="nav-header" class="bg-stone-50/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-sky-800">
+                <a href="#inicio">HOME</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#sobre"        class="text-gray-600 hover:text-sky-700 transition">Sobre</a>
+                <a href="#carreira"     class="text-gray-600 hover:text-sky-700 transition">Carreira</a>
+                <a href="#competencias" class="text-gray-600 hover:text-sky-700 transition">Competências</a>
+                <a href="#certificacoes" class="text-gray-600 hover:text-sky-700 transition">Certificações</a>
+                <a href="#formacao"     class="text-gray-600 hover:text-sky-700 transition">Formação</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#sobre"         class="block py-2 text-gray-600 hover:text-sky-700 transition">Sobre</a>
+            <a href="#carreira"      class="block py-2 text-gray-600 hover:text-sky-700 transition">Carreira</a>
+            <a href="#competencias"  class="block py-2 text-gray-600 hover:text-sky-700 transition">Competências</a>
+            <a href="#certificacoes" class="block py-2 text-gray-600 hover:text-sky-700 transition">Certificações</a>
+            <a href="#formacao"      class="block py-2 text-gray-600 hover:text-sky-700 transition">Formação</a>
+        </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="container mx-auto px-6 py-8">
+
+        <!-- INÍCIO -->
+        <section id="inicio" class="text-center py-20">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-900">Rafael Barrios Garrido Lourenço</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600">
+                DBA | DBRE/SRE | Alta disponibilidade, performance e automação de bancos de dados em cloud | Cloud (AWS, Azure, OCI)
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="https://www.linkedin.com/in/rafaelbg89" target="_blank"
+                   class="bg-sky-700 text-white px-6 py-2 rounded-full hover:bg-sky-800 transition shadow-lg">
+                    LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- SOBRE MIM -->
+        <section id="sobre" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Sobre Mim</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+
+                <!-- Resumo -->
+                <p class="text-gray-700 leading-relaxed text-center">
+                    Profissional de TI com vasta experiência em ambientes críticos, focado em garantir a confiabilidade,
+                    performance e alta disponibilidade de ecossistemas de dados. Atuo como DBRE (Database Reliability Engineer),
+                    unindo administração de bancos de dados à cultura SRE para eliminar tarefas repetitivas através de automação avançada.
+                </p>
+
+                <hr class="my-8 border-gray-100">
+
+                <!-- Competências -->
+                <p class="text-xs font-medium uppercase tracking-widest text-gray-400 mb-4">Principais competências</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="border border-gray-100 rounded-xl p-4">
+                        <p class="font-medium text-sky-800 mb-1">🗄️ Database &amp; Performance</p>
+                        <p class="text-sm text-gray-500">SQL Server, Performance Tuning (T-SQL, Execution Plans), Always On, HA/DR e ambientes híbridos.</p>
+                    </div>
+                    <div class="border border-gray-100 rounded-xl p-4">
+                        <p class="font-medium text-sky-800 mb-1">⚙️ Automação</p>
+                        <p class="text-sm text-gray-500">Python, PowerShell e Shell Script para fluxos de trabalho e monitoramento proativo.</p>
+                    </div>
+                    <div class="border border-gray-100 rounded-xl p-4">
+                        <p class="font-medium text-sky-800 mb-1">☁️ Cloud &amp; Infraestrutura</p>
+                        <p class="text-sm text-gray-500">Ambientes multi-cloud (AWS, Azure, OCI) com foco em escalabilidade e segurança.</p>
+                    </div>
+                    <div class="border border-gray-100 rounded-xl p-4">
+                        <p class="font-medium text-sky-800 mb-1">🤖 Inovação com IA</p>
+                        <p class="text-sm text-gray-500">Automação com n8n e integração de LLMs locais para inteligência operacional.</p>
+                    </div>
+                </div>
+
+                <hr class="my-8 border-gray-100">
+
+<!-- Stack técnica -->
+<p class="text-xs font-medium uppercase tracking-widest text-gray-400 mb-4">Stack técnica</p>
+<div class="space-y-4">
+    <div>
+        <p class="text-xs text-gray-400 mb-2">Bancos de dados</p>
+        <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">SQL Server</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">Azure SQL</span>
+        </div>
+    </div>
+    <div>
+        <p class="text-xs text-gray-400 mb-2">Cloud</p>
+        <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">AWS Cloud Practitioner</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">OCI Certified AI &amp; Foundations</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">Azure</span>
+        </div>
+    </div>
+    <div>
+        <p class="text-xs text-gray-400 mb-2">DevOps / SRE</p>
+        <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">Python</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">PowerShell</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">Bash</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">Zabbix</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">n8n</span>
+            <span class="text-xs font-medium bg-sky-50 text-sky-800 px-3 py-1 rounded-full">Ollama (LLMs)</span>
+        </div>
+    </div>
+</div>
+
+        <!-- CARREIRA -->
+        <section id="carreira" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-12 text-sky-900">Linha do Tempo da Carreira</h2>
+            <div class="max-w-3xl mx-auto">
+                <p class="text-gray-700 leading-relaxed text-center mb-8">
+                    Explore minha experiência profissional através desta linha do tempo interativa.
+                    Clique em cada item para ver os detalhes das minhas responsabilidades e conquistas em cada função.
+                </p>
+                <div class="relative border-l-2 border-sky-200 timeline-container">
+
+                    <!-- Apdata -->
+                    <div class="mb-8 pl-8 timeline-item">
+                        <div class="absolute w-4 h-4 bg-sky-700 rounded-full -left-2 border-4 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md timeline-item-trigger cursor-pointer hover:shadow-lg transition">
+                            <h3 class="text-xl font-bold text-sky-800">Apdata</h3>
+                            <p class="text-gray-500 text-sm">Analista de Banco de Dados | Set. 2021 – Atualmente</p>
+                            <div class="timeline-item-content mt-4">
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Administração de +100 instâncias SQL Server (2016/2019/2022) em ambientes críticos, com foco em Database Administration (DBA), High Availability e Performance.</li>
+                                    <li>Gestão de High Availability (Always On Availability Groups, Failover Cluster Instance - FCI) e Disaster Recovery (Log Shipping, Backup/Restore), garantindo metas de SLA, RPO e RTO.</li>
+                                    <li>Otimização de performance utilizando T-SQL, Query Optimization, análise de Execution Plans, index tuning e troubleshooting de queries críticas.</li>
+                                    <li>Atuação em performance tuning de banco de dados, identificando gargalos de CPU, I/O e memória, com melhoria de até 99% em workloads críticos.</li>
+                                    <li>Implementação e manutenção de rotinas de Backup & Restore (Full, Differential, Log Backup) com validação de integridade e testes de restore.</li>
+                                    <li>Suporte a times de desenvolvimento em database performance, modelagem de dados, tuning de queries e boas práticas de SQL Server.</li>
+                                    <li>Provisionamento, configuração e administração de ambientes em Oracle Cloud Infrastructure (OCI), AWS e Microsoft Azure, incluindo VMs Windows Server e Linux (Ubuntu Server).</li>
+                                    <li>Provisionamento de infraestrutura cloud com foco em arquitetura escalável, alta disponibilidade e integração com ambientes on-premises.</li>
+                                    <li>Automação de tarefas administrativas com PowerShell, Python e Bash, incluindo rotinas de backup, coleta de métricas e auditoria de logs.</li>
+                                    <li>Monitoramento e observabilidade com Zabbix, incluindo criação de triggers, dashboards e resposta proativa a incidentes.</li>
+                                    <li>Gestão de segurança em banco de dados, incluindo controle de acessos (roles/permissions), encryption (TDE), auditoria e compliance (LGPD e ISO 27001).</li>
+                                    <li>Troubleshooting avançado em ambientes SQL Server, atuando em incidentes críticos, análise de logs, deadlocks e falhas de performance.</li>
+                                    <li>Experiência com ferramentas como SQL Server Management Studio (SSMS) e Azure Data Studio para administração e tuning.</li>
+                                    <li>Atuação baseada em boas práticas de ITIL, com gestão de incidentes, problemas e mudanças (change management).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CDS Serviços -->
+                    <div class="mb-8 pl-8 timeline-item">
+                        <div class="absolute w-4 h-4 bg-sky-700 rounded-full -left-2 border-4 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md timeline-item-trigger cursor-pointer hover:shadow-lg transition">
+                            <h3 class="text-xl font-bold text-sky-800">CDS Serviços e Monitoramento</h3>
+                            <p class="text-gray-500 text-sm">Analista de Infraestrutura | Nov. 2014 – Jul. 2018</p>
+                            <div class="timeline-item-content mt-4">
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Suporte técnico em redes, servidores e ambientes críticos.</li>
+                                    <li>Monitoramento de serviços, aplicações e segurança perimetral.</li>
+                                    <li>Documentação e automação de tarefas operacionais.</li>
+                                    <li>Implementação e manutenção de ambientes virtualizados (Hyper-V e VMware)</li>
+                                    <li>Configuração e manutenção de servidores Windows e Linux, além da gestão de redes, segurança e suporte técnico em ambientes críticos.</li>
+                                    <li>Administração de Active Directory, GPOs, DNS, DHCP e controle de acesso.</li>
+                                    <li>Criação de scripts e automações operacionais, além da documentação técnica dos ambientes.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scan Informática -->
+                    <div class="mb-8 pl-8 timeline-item">
+                        <div class="absolute w-4 h-4 bg-sky-700 rounded-full -left-2 border-4 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-md timeline-item-trigger cursor-pointer hover:shadow-lg transition">
+                            <h3 class="text-xl font-bold text-sky-800">Scan Informática</h3>
+                            <p class="text-gray-500 text-sm">Membro Fundador | Ago. 2012 – Nov. 2014</p>
+                            <div class="timeline-item-content mt-4">
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Participação na fundação e desenvolvimento inicial da empresa.</li>
+                                    <li>Atuação em diversas frentes para o estabelecimento das operações.</li>
+                                    <li>Planejamento, implantação e manutenção de pequenas infraestruturas de rede, incluindo configuração de roteadores, switches e cabeamento estruturado.</li>
+                                    <li>Atendimento personalizado a comércios e escritórios da região, oferecendo soluções completas de TI sob demanda.</li>                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPETÊNCIAS -->
+        <section id="competencias" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Minhas Competências</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Este gráfico de radar ilustra minhas principais áreas de competência, oferecendo uma visão rápida e comparativa
+                das minhas habilidades em diferentes domínios tecnológicos.
+            </p>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </section>
+
+        <!-- CERTIFICAÇÕES -->
+        <section id="certificacoes" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Certificações</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Minhas certificações demonstram meu compromisso com o aprendizado contínuo e a validação de conhecimentos
+                em áreas críticas da tecnologia.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Oracle Cloud Infrastructure Foundations (2023)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">AWS Cloud Practitioner Essentials (Second Edition)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">Cisco CyberOps Associate</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">LEI GERAL DE PROTEÇÃO DE DADOS (LGPD)</h3>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-sky-800 mb-2">ITIL Foundations</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMAÇÃO -->
+        <section id="formacao" class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Formação Acadêmica</h2>
+            <p class="text-gray-700 leading-relaxed text-center mb-8">
+                Minha formação acadêmica me proporcionou a base teórica e prática necessária para atuar com excelência
+                nas diversas áreas da tecnologia e gestão.
+            </p>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-sky-800">Estácio</h3>
+                    <p class="text-gray-600">Análise e Desenvolvimento de Sistemas, Tecnologia da Informação</p>
+                    <p class="text-gray-500 text-sm">Março de 2021 – Setembro de 2023</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-sky-800">Faculdade de Tecnologia de São Paulo - FATEC-SP</h3>
+                    <p class="text-gray-600">Gestão Empresarial, Administração e Negócios</p>
+                    <p class="text-gray-500 text-sm">Julho de 2016 – Dezembro de 2020</p>
+                </div>
+            </div>
+        </section>
+
+<!-- PUBLICAÇÕES -->
+<section id="publicacoes" class="py-16">
+    <h2 class="text-3xl font-bold text-center mb-8 text-sky-900">Publicações</h2>
+    <p class="text-gray-700 leading-relaxed text-center mb-8">
+        O artigo científico faz parte do trabalho de conclusão do curso superior em Gestão Empresarial, e reflete meu interesse e contribuição para o debate sobre temas relevantes no campo da tecnologia e gestão.
+    </p>
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+        <a href="https://rafaelbgarrido.github.io/artigopdf/" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="block group">
+            <h3 class="text-xl font-bold text-sky-800 group-hover:text-sky-600 transition-colors duration-200">
+                INDÚSTRIA 4.0: UM ESTUDO SOBRE OS DESAFIOS DA CAPACITAÇÃO PROFISSIONAL
+            </h3>
+            <p class="text-sm text-sky-600 mt-2 group-hover:text-sky-500 transition-colors duration-200">
+                ↗ Acessar publicação completa
+            </p>
+        </a>
+    </div>
+</section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-sky-900 text-white py-8 text-center">
+        <p>&copy; Powered by Rafael + AI + Coffee.</p>
+    </footer>
+
+    <!-- Script externo -->
+    <script src="script.js"></script>
+</body>
+</html>
